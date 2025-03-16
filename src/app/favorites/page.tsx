@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
 
 interface Product {
@@ -57,7 +57,8 @@ export default function Favorites() {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image
+      image: product.image,
+      quantity: 1
     });
     toast.success('已添加到购物车');
   };
