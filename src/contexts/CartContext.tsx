@@ -46,6 +46,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           typeof item.name.en === 'string' &&
           typeof item.price === 'number' &&
           typeof item.image === 'string' &&
+          typeof item.category === 'string' &&
+          (!item.description || (
+            typeof item.description === 'object' &&
+            typeof item.description.th === 'string' &&
+            typeof item.description.zh === 'string' &&
+            typeof item.description.en === 'string'
+          )) &&
+          Array.isArray(item.tags) &&
+          item.tags.every((tag: any) => typeof tag === 'string') &&
           typeof item.quantity === 'number'
         );
         setItems(validItems);
