@@ -29,7 +29,7 @@ const mockFetchAddress = async (id: string): Promise<AddressFormData> => {
   };
 };
 
-export default function EditAddress({ params }: { params: { id: string } }) {
+export default function EditAddressPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<AddressFormData>({
@@ -40,6 +40,9 @@ export default function EditAddress({ params }: { params: { id: string } }) {
     address: '',
     isDefault: false
   });
+
+  // 使用 id 参数
+  const addressId = params.id;
 
   // 获取地址数据
   useEffect(() => {

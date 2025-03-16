@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Cart() {
   const router = useRouter();
-  const { items, updateQuantity, removeFromCart, totalAmount } = useCart();
+  const { items, updateQuantity, removeFromCart } = useCart();
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -50,6 +50,8 @@ export default function Cart() {
       updateQuantity(productId, newQuantity);
     }
   };
+
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="min-h-screen bg-gray-50">
