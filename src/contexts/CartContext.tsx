@@ -14,7 +14,7 @@ interface CartContextType {
 }
 
 // 创建购物车上下文
-const CartContext = createContext<CartContextType | undefined>(undefined);
+export const CartContext = createContext<CartContextType | undefined>(undefined);
 
 // 购物车提供者组件
 export function CartProvider({ children }: { children: React.ReactNode }) {
