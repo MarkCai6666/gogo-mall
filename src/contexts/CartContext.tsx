@@ -40,7 +40,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         // 确保所有项目都符合 CartItem 类型
         const validItems = parsedItems.filter((item: any) => 
           typeof item.id === 'string' &&
-          typeof item.name === 'string' &&
+          typeof item.name === 'object' &&
+          typeof item.name.th === 'string' &&
+          typeof item.name.zh === 'string' &&
+          typeof item.name.en === 'string' &&
           typeof item.price === 'number' &&
           typeof item.image === 'string' &&
           typeof item.quantity === 'number'
