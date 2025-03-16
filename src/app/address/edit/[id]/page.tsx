@@ -14,6 +14,12 @@ interface AddressFormData {
   isDefault: boolean;
 }
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 // 模拟从API获取地址数据
 const mockFetchAddress = async (id: string): Promise<AddressFormData> => {
   // 这里模拟API调用
@@ -29,7 +35,7 @@ const mockFetchAddress = async (id: string): Promise<AddressFormData> => {
   };
 };
 
-export default function EditAddressPage({ params }: { params: { id: string } }) {
+export default async function EditAddressPage({ params }: PageProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<AddressFormData>({

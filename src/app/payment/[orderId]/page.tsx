@@ -1,5 +1,11 @@
 import PaymentClient from './PaymentClient';
 
-export default async function PaymentPage({ params }: { params: { orderId: string } }) {
+interface PageProps {
+  params: {
+    orderId: string;
+  };
+}
+
+export default async function PaymentPage({ params }: PageProps) {
   return <PaymentClient orderId={params.orderId} />;
 } 
