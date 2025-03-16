@@ -36,7 +36,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     try {
       const savedItems = localStorage.getItem('cartItems');
       if (savedItems) {
-        setItems(JSON.parse(savedItems));
+        const parsedItems = JSON.parse(savedItems);
+        // 确保所有项目都符合 CartItem 类型
+        const validItems = parsedItems.filter((item: any) => 
+          typeof item.id === 'string' &&
+          typeof item.name === 'string' &&
+          typeof item.price === 'number' &&
+          typeof item.image === 'string' &&
+          typeof item.quantity === 'number'
+        );
+        setItems(validItems);
       }
     } catch (error) {
       console.error('Error loading cart items:', error);
