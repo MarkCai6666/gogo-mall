@@ -18,6 +18,7 @@ interface CartContextType {
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   totalAmount: number;
+  totalItems: number;
 }
 
 // 创建购物车上下文
@@ -114,8 +115,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // 计算总金额
   const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  // 计算总商品数量
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
-    <CartContext.Provider value={{ items, addToCart, removeFromCart, updateQuantity, totalAmount }}>
+    <CartContext.Provider value={{ 
+      items, 
+      addToCart, 
+      removeFromCart, 
+      updateQuantity, 
+      totalAmount,
+      totalItems 
+    }}>
       {children}
     </CartContext.Provider>
   );
