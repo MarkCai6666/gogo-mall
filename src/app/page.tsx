@@ -104,8 +104,9 @@ export default function Home() {
       <nav className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="flex-shrink-0 flex items-center space-x-2">
+            {/* Logo 和搜索框 */}
+            <div className="flex items-center">
+              <Link href="/" className="flex-shrink-0 flex items-center">
                 <Image
                   src="/images/logo.png"
                   alt="GOGO商城"
@@ -113,41 +114,43 @@ export default function Home() {
                   height={40}
                   className="w-10 h-10"
                 />
-                <span className="text-2xl font-bold text-blue-600">GOGO</span>
-                <span className="text-xl font-medium text-gray-700">{t.common.mall}</span>
+                <span className="text-2xl font-bold text-blue-600 ml-2">GOGO</span>
+                <span className="text-xl font-medium text-gray-700 hidden sm:inline">{t.common.mall}</span>
               </Link>
-              {/* 搜索框 */}
-              <div className="hidden sm:block">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder={t.common.searchPlaceholder}
-                    className="w-[300px] h-10 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-blue-500"
-                  />
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </div>
+            </div>
+
+            {/* 搜索框 - 在移动端隐藏 */}
+            <div className="hidden md:block flex-1 max-w-lg mx-8">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder={t.common.searchPlaceholder}
+                  className="w-full h-10 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-blue-500"
+                />
+                <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-6">
-              <Link href="/" className="text-gray-600 hover:text-blue-500 transition-colors">{t.nav.home}</Link>
+
+            {/* 导航链接 */}
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="text-gray-600 hover:text-blue-500 transition-colors text-sm">{t.nav.home}</Link>
               <div className="relative group">
-                <button className="text-gray-600 hover:text-blue-500 transition-colors">
+                <button className="text-gray-600 hover:text-blue-500 transition-colors text-sm">
                   {t.nav.categories}
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
                 </button>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="bg-white rounded-lg shadow-lg py-2 w-32">
-                    {categories.map((category: CategoryType) => (
+                    {categories.map((category) => (
                       <button
                         key={category.id}
                         onClick={() => handleCategoryClick(category.name)}
-                        className="w-full px-4 py-2 text-left text-gray-600 hover:text-blue-500 hover:bg-gray-50 transition-colors"
+                        className="w-full px-4 py-2 text-left text-sm text-gray-600 hover:text-blue-500 hover:bg-gray-50 transition-colors"
                       >
-                        {category.name}
+                        {t.categories[category.name]}
                       </button>
                     ))}
                   </div>
@@ -155,20 +158,38 @@ export default function Home() {
               </div>
               <Link 
                 href="/cart" 
-                className="text-gray-600 hover:text-blue-500 transition-colors relative"
+                className="text-gray-600 hover:text-blue-500 transition-colors relative text-sm"
               >
                 {t.nav.cart}
-                <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
-                  {getCartItemsCount()}
-                </span>
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
+                    {getCartItemsCount()}
+                  </span>
+                )}
               </Link>
               <Link 
                 href="/profile" 
-                className="text-gray-600 hover:text-blue-500 transition-colors"
+                className="text-gray-600 hover:text-blue-500 transition-colors text-sm"
               >
                 {t.nav.profile}
               </Link>
               <LanguageSwitch />
+            </div>
+          </div>
+
+          {/* 移动端搜索框 */}
+          <div className="md:hidden pb-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder={t.common.searchPlaceholder}
+                className="w-full h-10 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-blue-500"
+              />
+              <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
