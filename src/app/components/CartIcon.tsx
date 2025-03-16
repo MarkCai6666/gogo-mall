@@ -5,7 +5,7 @@ import { useCart } from '@/app/contexts/CartContext';
 import { useEffect, useState } from 'react';
 
 export default function CartIcon() {
-  const { items, totalItems } = useCart();
+  const { totalItems } = useCart();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -48,9 +48,9 @@ export default function CartIcon() {
           d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
         />
       </svg>
-      {items.length > 0 && (
+      {totalItems > 0 && (
         <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-          {items.length > 99 ? '99+' : items.length}
+          {totalItems > 99 ? '99+' : totalItems}
         </span>
       )}
     </Link>
