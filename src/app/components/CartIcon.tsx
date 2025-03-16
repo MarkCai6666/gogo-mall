@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CartProvider, useCart } from '@/contexts/CartContext';
+import { useCart } from '@/contexts/CartContext';
 import { useEffect, useState } from 'react';
 
 export default function CartIcon() {
