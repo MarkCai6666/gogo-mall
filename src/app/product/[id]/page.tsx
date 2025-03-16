@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { products, type Product } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { toast } from 'react-hot-toast';
 
 export default function ProductDetail({ params }: { params: { id: string } }) {
   const { t, language } = useLanguage();
@@ -19,12 +20,10 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
     if (!product) return;
     
     addToCart({
-      id: product.id,
-      name: product.name[language],
-      price: product.price,
-      image: product.image,
+      ...product,
       quantity: quantity
     });
+    toast.success(t.common.addToCart);
   };
 
   if (!product) {

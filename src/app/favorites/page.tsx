@@ -6,59 +6,63 @@ import Image from 'next/image';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import { CartItem } from '@/types/cart';
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  originalPrice?: number;
-  soldCount: number;
-}
+import { Product } from '@/data/products';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 // 模拟收藏数据
 const mockFavorites: Product[] = [
   {
     id: '1',
-    name: '泰国金枕头榴莲',
-    price: 499,
-    originalPrice: 599,
-    image: '/images/durian.jpg',
-    soldCount: 2341
+    name: {
+      th: 'iPhone 15 Pro',
+      zh: 'iPhone 15 Pro',
+      en: 'iPhone 15 Pro'
+    },
+    price: 41900,
+    image: '/images/products/iphone15pro.png',
+    category: '手机数码',
+    tags: ['新品', '热销'],
+    description: {
+      th: 'iPhone 15 Pro รุ่นใหม่ล่าสุด',
+      zh: 'iPhone 15 Pro 最新款',
+      en: 'Latest iPhone 15 Pro'
+    }
   },
   {
     id: '2',
-    name: '泰国椰青',
-    price: 89,
-    image: '/images/coconut.jpg',
-    soldCount: 1532
-  },
-  {
-    id: '3',
-    name: '泰国山竹',
-    price: 299,
-    originalPrice: 359,
-    image: '/images/mangosteen.jpg',
-    soldCount: 892
+    name: {
+      th: 'เสื้อแจ็คเก็ตขนเป็ด',
+      zh: '轻薄羽绒服',
+      en: 'Light Down Jacket'
+    },
+    price: 1990,
+    image: '/images/products/downjacket.png',
+    category: '服装配饰',
+    tags: ['热销', '特惠'],
+    description: {
+      th: 'เสื้อแจ็คเก็ตขนเป็ดน้ำหนักเบา',
+      zh: '轻薄保暖羽绒服',
+      en: 'Lightweight warm down jacket'
+    }
   }
 ];
 
 export default function Favorites() {
-  const [favorites, setFavorites] = useState<Product[]>(mockFavorites);
   const { addToCart } = useCart();
+  const { language } = useLanguage();
+  const [mounted, setMounted] = useState(false);
 
-  // 移除收藏
-  const removeFavorite = (productId: string) => {
-    setFavorites(favorites.filter(item => item.id !== productId));
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  // 添加到购物车
+  if (!mounted) {
+    return null;
+  }
+
   const handleAddToCart = (product: Product) => {
     const cartItem: CartItem = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
+      ...product,
       quantity: 1
     };
     addToCart(cartItem);
@@ -84,54 +88,25 @@ export default function Favorites() {
       {/* 商品列表 */}
       <div className="max-w-3xl mx-auto px-4 py-6">
         <div className="space-y-4">
-          {favorites.map(product => (
+          {mockFavorites.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <div className="p-4 flex">
-                {/* 商品图片 */}
-                <div className="w-24 h-24 relative flex-shrink-0">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-
-                {/* 商品信息 */}
-                <div className="ml-4 flex-1">
-                  <Link href={`/products/${product.id}`} className="block">
-                    <h3 className="text-base font-medium line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <span className="text-red-600 text-lg font-medium">
-                        ฿{product.price}
-                      </span>
-                      {product.originalPrice && (
-                        <span className="ml-2 text-gray-400 text-sm line-through">
-                          ฿{product.originalPrice}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-1 text-sm text-gray-500">
-                      已售 {product.soldCount}
-                    </div>
-                  </Link>
-                </div>
-
-                {/* 操作按钮 */}
-                <div className="flex flex-col justify-between items-end">
-                  <button
-                    onClick={() => removeFavorite(product.id)}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+              <div className="relative h-48">
+                <Image
+                  src={product.image}
+                  alt={product.name[language]}
+                  fill
+                  className="object-contain p-4"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-gray-800 font-medium mb-2">
+                  {product.name[language]}
+                </h3>
+                <div className="flex items-center justify-between">
+                  <div className="text-red-600 font-medium">฿{product.price.toLocaleString()}</div>
                   <button
                     onClick={() => handleAddToCart(product)}
-                    className="px-3 py-1 text-sm text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+                    className="text-blue-600 hover:text-blue-700"
                   >
                     加入购物车
                   </button>
@@ -141,7 +116,7 @@ export default function Favorites() {
           ))}
         </div>
 
-        {favorites.length === 0 && (
+        {mockFavorites.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 mb-4">
               <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">

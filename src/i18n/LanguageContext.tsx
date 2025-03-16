@@ -25,6 +25,16 @@ interface Translations {
     quantity: string;
     productNotFound: string;
     backToHome: string;
+    confirmOrder: string;
+    itemList: string;
+    coupon: string;
+    selected: string;
+    selectCoupon: string;
+    amountDetails: string;
+    subtotal: string;
+    discount: string;
+    total: string;
+    submitOrder: string;
   };
   nav: {
     home: string;

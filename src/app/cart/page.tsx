@@ -5,10 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/contexts/CartContext';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export default function Cart() {
   const router = useRouter();
   const { items, updateQuantity, removeFromCart } = useCart();
+  const { t, language } = useLanguage();
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -103,17 +105,17 @@ export default function Cart() {
                     <div className="ml-4 w-20 h-20 relative flex-shrink-0">
                       <Image
                         src={item.image}
-                        alt={item.name}
+                        alt={item.name[language]}
                         fill
                         className="object-cover rounded-lg"
                       />
                     </div>
 
                     {/* 商品信息 */}
-                    <div className="ml-4 flex-1">
+                    <div className="ml-4 flex-1 min-w-0">
                       <Link href={`/product/${item.id}`} className="block">
-                        <h3 className="text-base font-medium line-clamp-2">
-                          {item.name}
+                        <h3 className="text-base font-medium text-gray-900">
+                          {item.name[language]}
                         </h3>
                         <div className="mt-2 text-red-600 text-lg font-medium">
                           ฿{item.price}

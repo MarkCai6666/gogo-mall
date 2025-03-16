@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { products, categories, banners } from './data';
+import { products } from '@/data/products';
+import { categories, banners } from './data';
 import LanguageSwitch from '@/components/LanguageSwitch';
 import { useLanguage } from '@/i18n/LanguageContext';
 import Footer from '@/components/Footer';
@@ -21,14 +22,6 @@ type CategoryType = {
   id: number;
   name: '手机数码' | '服装配饰' | '食品生鲜' | '家居家装';
   icon: React.ReactNode;
-};
-
-type ProductType = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  tags: Array<'新品' | '热销' | '特惠'>;
 };
 
 export default function Home() {
@@ -250,7 +243,7 @@ export default function Home() {
             {t.home.popularProducts}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            {products.map((product: ProductType) => (
+            {products.map((product: Product) => (
               <div 
                 key={product.id} 
                 className="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer hover:shadow-md transition-all duration-300 hover:-translate-y-1"
@@ -275,14 +268,14 @@ export default function Home() {
                   <div className="relative w-full h-full overflow-hidden">
                     <Image
                       src={product.image}
-                      alt={product.name}
+                      alt={product.name[language]}
                       fill
                       className="object-contain p-4 group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="text-gray-800 font-medium mb-2">{product.name}</h3>
+                  <h3 className="text-gray-800 font-medium mb-2">{product.name[language]}</h3>
                   <div className="flex items-center justify-between">
                     <div className="text-blue-600 font-medium">฿{product.price.toLocaleString()}</div>
                     {isClient && (

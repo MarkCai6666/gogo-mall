@@ -4,16 +4,10 @@ import { useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import { CartItem } from '@/types/cart';
-
-type ProductBase = {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-};
+import { Product } from '@/data/products';
 
 interface AddToCartButtonProps {
-  product: ProductBase;
+  product: Product;
 }
 
 export default function AddToCartButton({ product }: AddToCartButtonProps) {
