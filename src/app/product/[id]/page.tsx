@@ -8,7 +8,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 export default function ProductDetail({ params }: { params: { id: string } }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
   
@@ -20,7 +20,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
     
     addToCart({
       id: product.id.toString(), // 转换为字符串
-      name: product.name,
+      name: product.name[language], // 使用当前语言的名称
       price: product.price,
       image: product.image,
       quantity: quantity
@@ -66,7 +66,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               <div className="relative h-96 bg-gray-100">
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt={product.name[language]}
                   fill
                   className="object-contain p-8"
                 />
@@ -90,7 +90,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
                   </span>
                 ))}
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">{product.name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">{product.name[language]}</h1>
               <p className="text-sm text-gray-500 mb-4">{t.categories[product.category as keyof typeof t.categories]}</p>
               <div className="flex items-baseline gap-2 mb-6">
                 <span className="text-2xl font-bold text-red-500">฿{product.price.toLocaleString()}</span>
@@ -100,7 +100,9 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               {/* 商品描述 */}
               <div className="mb-6">
                 <h2 className="text-lg font-medium text-gray-900 mb-2">{t.common.description}</h2>
-                <p className="text-gray-600">{product.description || t.common.noDescription}</p>
+                <p className="text-gray-600">
+                  {product.description ? product.description[language] : t.common.noDescription}
+                </p>
               </div>
 
               {/* 数量选择 */}
