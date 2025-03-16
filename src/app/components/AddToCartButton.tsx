@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'react-hot-toast';
+import { CartItem } from '@/types/cart';
 
 interface AddToCartButtonProps {
   product: {
@@ -20,7 +21,11 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
   const handleAddToCart = () => {
     setIsLoading(true);
     try {
-      addToCart(product);
+      const cartItem: CartItem = {
+        ...product,
+        quantity: 1, // 默认数量为1
+      };
+      addToCart(cartItem);
       toast.success('已添加到购物车', {
         duration: 2000,
         position: 'top-center',
