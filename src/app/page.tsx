@@ -8,12 +8,8 @@ import { products, categories, banners } from './data';
 import LanguageSwitch from '@/components/LanguageSwitch';
 import { useLanguage } from '@/i18n/LanguageContext';
 import Footer from '@/components/Footer';
-
-// 购物车状态管理
-interface CartItem {
-  id: number;
-  quantity: number;
-}
+import { CartItem } from '@/types/cart';
+import { Product } from '@/data/products';
 
 // 类型定义
 type BannerType = {
@@ -40,14 +36,14 @@ export default function Home() {
   const { t, language } = useLanguage();
   const [currentBanner, setCurrentBanner] = useState(0);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [salesCount, setSalesCount] = useState<Record<number, number>>({});
+  const [salesCount, setSalesCount] = useState<Record<string, number>>({});
   const [isClient, setIsClient] = useState(false);
 
   // 设置客户端标志
   useEffect(() => {
     setIsClient(true);
     // 生成随机销量数据
-    const randomSales: Record<number, number> = {};
+    const randomSales: Record<string, number> = {};
     products.forEach(product => {
       randomSales[product.id] = Math.floor(Math.random() * 1000);
     });
@@ -55,17 +51,26 @@ export default function Home() {
   }, []);
 
   // 添加到购物车
-  const addToCart = (productId: number) => {
+  const addToCart = (productId: string) => {
     setCartItems(prev => {
+      const product = products.find(p => p.id === productId);
+      if (!product) return prev;
+
       const existingItem = prev.find(item => item.id === productId);
-      const newCart = existingItem
-        ? prev.map(item =>
-            item.id === productId
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          )
-        : [...prev, { id: productId, quantity: 1 }];
+      if (existingItem) {
+        return prev.map(item =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      const newItem: CartItem = {
+        ...product,
+        quantity: 1
+      };
       
+      const newCart = [...prev, newItem];
       // 保存到 localStorage
       localStorage.setItem('cart', JSON.stringify(newCart));
       return newCart;

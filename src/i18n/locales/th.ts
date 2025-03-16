@@ -14,7 +14,17 @@ export const th = {
     noDescription: 'ไม่มีคำอธิบาย',
     quantity: 'จำนวน',
     productNotFound: 'ไม่พบสินค้า',
-    backToHome: 'กลับสู่หน้าแรก'
+    backToHome: 'กลับหน้าแรก',
+    confirmOrder: 'ยืนยันคำสั่งซื้อ',
+    itemList: 'รายการสินค้า',
+    coupon: 'คูปอง',
+    selected: 'เลือกแล้ว',
+    selectCoupon: 'คลิกเพื่อเลือกคูปอง',
+    amountDetails: 'รายละเอียดจำนวนเงิน',
+    subtotal: 'ยอดรวม',
+    discount: 'ส่วนลด',
+    total: 'ยอดสุทธิ',
+    submitOrder: 'ส่งคำสั่งซื้อ'
   },
   nav: {
     home: 'หน้าแรก',
@@ -32,11 +42,11 @@ export const th = {
     methods: {
       promptpay: {
         name: 'พร้อมเพย์',
-        description: 'ชำระด้วย PromptPay QR Code'
+        description: 'ชำระด้วย QR Code พร้อมเพย์'
       },
       creditCard: {
         name: 'บัตรเครดิต/เดบิต',
-        description: 'รองรับ Visa, Mastercard, JCB'
+        description: 'รองรับ Visa, Mastercard, JCB และอื่นๆ'
       },
       bankTransfer: {
         name: 'โอนเงินผ่านธนาคาร',
@@ -45,12 +55,12 @@ export const th = {
     },
     messages: {
       success: 'ชำระเงินสำเร็จ!',
-      error: 'ชำระเงินไม่สำเร็จ โปรดลองอีกครั้ง',
+      error: 'ชำระเงินไม่สำเร็จ กรุณาลองใหม่',
       loadError: 'ไม่สามารถโหลดข้อมูลคำสั่งซื้อ'
     },
     success: {
       title: 'ชำระเงินสำเร็จ',
-      message: 'คำสั่งซื้อของคุณชำระเงินเรียบร้อยแล้ว เราจะดำเนินการโดยเร็วที่สุด',
+      message: 'คำสั่งซื้อของคุณได้รับการชำระเงินเรียบร้อยแล้ว เราจะดำเนินการจัดส่งโดยเร็วที่สุด',
       viewOrder: 'ดูคำสั่งซื้อ',
       continueShopping: 'ช้อปปิ้งต่อ'
     }
@@ -62,8 +72,8 @@ export const th = {
     specialOffers: 'โปรโมชั่นพิเศษ'
   },
   categories: {
-    '手机数码': 'มือถือและอิเล็กทรอนิกส์',
-    '服装配饰': 'เสื้อผ้าและเครื่องประดับ',
+    '手机数码': 'อิเล็กทรอนิกส์',
+    '服装配饰': 'แฟชั่น',
     '食品生鲜': 'อาหารและของสด',
     '家居家装': 'บ้านและการตกแต่ง'
   },
@@ -75,7 +85,7 @@ export const th = {
   tags: {
     '新品': 'ใหม่',
     '热销': 'ขายดี',
-    '特惠': 'พิเศษ'
+    '特惠': 'ลดราคา'
   },
   footer: {
     customerService: 'บริการลูกค้า',
@@ -88,8 +98,8 @@ export const th = {
     terms: 'ข้อกำหนดการใช้งาน',
     business: 'ธุรกิจ',
     sellerCenter: 'ศูนย์ผู้ขาย',
-    affiliate: 'พันธมิตรทางการตลาด',
-    advertise: 'ลงโฆษณา',
+    affiliate: 'พันธมิตร',
+    advertise: 'โฆษณา',
     contact: 'ติดต่อ',
     allRightsReserved: 'สงวนลิขสิทธิ์'
   }

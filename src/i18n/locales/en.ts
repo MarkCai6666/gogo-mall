@@ -6,15 +6,25 @@ export const en = {
     cancel: 'Cancel',
     mall: 'Mall',
     searchPlaceholder: 'Search products',
-    soldCount: 'Sold {count}',
+    soldCount: '{count} sold',
     addToCart: 'Add to Cart',
     buyNow: 'Buy Now',
-    productNotFound: 'Product not found',
-    backToHome: 'Back to Home',
     productDetails: 'Product Details',
     description: 'Description',
     noDescription: 'No description available',
-    quantity: 'Quantity'
+    quantity: 'Quantity',
+    productNotFound: 'Product not found',
+    backToHome: 'Back to Home',
+    confirmOrder: 'Confirm Order',
+    itemList: 'Item List',
+    coupon: 'Coupon',
+    selected: 'Selected',
+    selectCoupon: 'Click to select coupon',
+    amountDetails: 'Amount Details',
+    subtotal: 'Subtotal',
+    discount: 'Discount',
+    total: 'Total',
+    submitOrder: 'Submit Order'
   },
   nav: {
     home: 'Home',
@@ -44,9 +54,9 @@ export const en = {
       }
     },
     messages: {
-      success: 'Payment successful!',
-      error: 'Payment failed, please try again',
-      loadError: 'Failed to load order information'
+      success: 'Payment Successful!',
+      error: 'Payment Failed, Please Try Again',
+      loadError: 'Failed to Load Order Information'
     },
     success: {
       title: 'Payment Successful',
@@ -62,15 +72,15 @@ export const en = {
     specialOffers: 'Special Offers'
   },
   categories: {
-    '手机数码': 'Digital & Mobile',
-    '服装配饰': 'Fashion & Accessories',
-    '食品生鲜': 'Food & Fresh',
+    '手机数码': 'Electronics',
+    '服装配饰': 'Fashion',
+    '食品生鲜': 'Food & Grocery',
     '家居家装': 'Home & Living'
   },
   banners: {
     '新品上市': 'New Arrivals',
-    '限时特惠': 'Special Offers',
-    '品牌专场': 'Brand Events'
+    '限时特惠': 'Limited Time Offer',
+    '品牌专场': 'Brand Sale'
   },
   tags: {
     '新品': 'New',
@@ -88,9 +98,9 @@ export const en = {
     terms: 'Terms of Service',
     business: 'Business',
     sellerCenter: 'Seller Center',
-    affiliate: 'Affiliate Program',
+    affiliate: 'Affiliate',
     advertise: 'Advertise',
     contact: 'Contact',
-    allRightsReserved: 'All rights reserved'
+    allRightsReserved: 'All Rights Reserved'
   }
 }; 

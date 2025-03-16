@@ -14,7 +14,17 @@ export const zh = {
     noDescription: '暂无描述',
     quantity: '数量',
     productNotFound: '商品不存在',
-    backToHome: '返回首页'
+    backToHome: '返回首页',
+    confirmOrder: '确认订单',
+    itemList: '商品清单',
+    coupon: '优惠券',
+    selected: '已选择',
+    selectCoupon: '点击选择优惠券',
+    amountDetails: '金额明细',
+    subtotal: '商品总价',
+    discount: '优惠金额',
+    total: '实付金额',
+    submitOrder: '提交订单'
   },
   nav: {
     home: '首页',
