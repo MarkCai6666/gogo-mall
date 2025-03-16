@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '@/app/contexts/CartContext';
 import { useEffect, useState } from 'react';
 
 export default function CartIcon() {
@@ -48,9 +48,9 @@ export default function CartIcon() {
           d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
         />
       </svg>
-      {totalItems > 0 && (
+      {items.length > 0 && (
         <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-          {totalItems > 99 ? '99+' : totalItems}
+          {items.length > 99 ? '99+' : items.length}
         </span>
       )}
     </Link>
