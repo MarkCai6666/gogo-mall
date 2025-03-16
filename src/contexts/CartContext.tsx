@@ -7,8 +7,8 @@ import { CartItem } from '@/types/cart';
 interface CartContextType {
   items: CartItem[];
   addToCart: (item: CartItem) => void;
-  removeFromCart: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
+  removeFromCart: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
   totalAmount: number;
   totalItems: number;
 }
@@ -39,7 +39,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         const parsedItems = JSON.parse(savedItems);
         // 确保所有项目都符合 CartItem 类型
         const validItems = parsedItems.filter((item: any) => 
-          typeof item.id === 'string' &&
+          typeof item.id === 'number' &&
           typeof item.name === 'string' &&
           typeof item.price === 'number' &&
           typeof item.image === 'string' &&
@@ -76,12 +76,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   // 从购物车移除商品
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: number) => {
     setItems(currentItems => currentItems.filter(item => item.id !== id));
   };
 
   // 更新商品数量
-  const updateQuantity = (id: string, quantity: number) => {
+  const updateQuantity = (id: number, quantity: number) => {
     setItems(currentItems =>
       currentItems.map(item =>
         item.id === id ? { ...item, quantity } : item
