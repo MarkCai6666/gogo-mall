@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useCart } from '@/contexts/CartContext';
+import { CartProvider, useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import { CartItem } from '@/types/cart';
 

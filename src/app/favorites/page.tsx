@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCart } from '@/contexts/CartContext';
+import { CartProvider, useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import { CartItem } from '@/types/cart';
 

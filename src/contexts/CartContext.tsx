@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { CartItem } from '@/types/cart';
 
 // 定义购物车上下文类型
-interface CartContextType {
+export interface CartContextType {
   items: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
@@ -14,7 +14,7 @@ interface CartContextType {
 }
 
 // 创建购物车上下文
-export const CartContext = createContext<CartContextType | undefined>(undefined);
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 // 购物车提供者组件
 export function CartProvider({ children }: { children: React.ReactNode }) {
@@ -76,25 +76,29 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // 计算总商品数量
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
+  const value: CartContextType = {
+    items,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    totalAmount,
+    totalItems
+  };
+
   return (
-    <CartContext.Provider value={{ 
-      items, 
-      addToCart, 
-      removeFromCart, 
-      updateQuantity, 
-      totalAmount,
-      totalItems 
-    }}>
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   );
 }
 
 // 使用购物车的 Hook
-export function useCart() {
+export function useCart(): CartContextType {
   const context = useContext(CartContext);
   if (context === undefined) {
     throw new Error('useCart must be used within a CartProvider');
   }
   return context;
-} 
+}
+
+export default CartContext; 
