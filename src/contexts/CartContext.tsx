@@ -1,15 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
-// 定义购物车项目类型
-export interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+import { CartItem } from '@/types/cart';
 
 // 定义购物车上下文类型
 interface CartContextType {
@@ -24,27 +16,8 @@ interface CartContextType {
 // 创建购物车上下文
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// 示例商品数据
-const sampleItems: CartItem[] = [
-  {
-    id: '1',
-    name: 'iPhone 15 Pro Max 256GB 原色钛金属',
-    price: 49900,
-    quantity: 1,
-    image: '/images/products/iphone15.jpg'
-  },
-  {
-    id: '2',
-    name: '轻薄羽绒服 90%白鸭绒 保暖外套',
-    price: 1299,
-    quantity: 2,
-    image: '/images/products/down-jacket.jpg'
-  }
-];
-
 // 购物车提供者组件
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  // 初始化状态，从 localStorage 加载或使用示例数据
   const [items, setItems] = useState<CartItem[]>([]);
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -53,20 +26,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     try {
       const savedItems = localStorage.getItem('cartItems');
       if (savedItems) {
-        const parsedItems = JSON.parse(savedItems);
-        if (Array.isArray(parsedItems) && parsedItems.length > 0) {
-          setItems(parsedItems);
-        } else {
-          // 如果购物车为空，使用示例数据
-          setItems(sampleItems);
-        }
-      } else {
-        // 如果没有保存的数据，使用示例数据
-        setItems(sampleItems);
+        setItems(JSON.parse(savedItems));
       }
     } catch (error) {
       console.error('Error loading cart items:', error);
-      setItems(sampleItems);
     }
     setIsInitialized(true);
   }, []);
@@ -74,12 +37,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // 当购物车内容变化时保存到 localStorage
   useEffect(() => {
     if (isInitialized) {
-      try {
-        localStorage.setItem('cartItems', JSON.stringify(items));
-        console.log('Cart items saved:', items);
-      } catch (error) {
-        console.error('Error saving cart items:', error);
-      }
+      localStorage.setItem('cartItems', JSON.stringify(items));
     }
   }, [items, isInitialized]);
 
