@@ -11,6 +11,7 @@ import { useLanguage } from '@/i18n/LanguageContext';
 import Footer from '@/components/Footer';
 import { CartItem } from '@/types/cart';
 import { Product } from '@/data/products';
+import { toast } from 'react-hot-toast';
 
 // 类型定义
 type BannerType = {
@@ -283,6 +284,18 @@ export default function Home() {
                         {t.common.soldCount.replace('{count}', (salesCount[product.id] || 0).toString())}
                       </div>
                     )}
+                  </div>
+                  <div className="mt-4 flex justify-between items-center">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product.id);
+                        toast.success(t.common.addToCart);
+                      }}
+                      className="px-3 py-1 text-sm text-blue-600 border border-blue-600 rounded-full hover:bg-blue-50 transition-colors"
+                    >
+                      {t.common.addToCart}
+                    </button>
                   </div>
                 </div>
               </div>
