@@ -6,7 +6,97 @@ import { en } from './locales/en';
 import { th } from './locales/th';
 
 type Language = 'zh' | 'en' | 'th';
-type Translations = typeof zh;
+
+// 定义翻译类型
+interface Translations {
+  common: {
+    back: string;
+    loading: string;
+    confirm: string;
+    cancel: string;
+    mall: string;
+    searchPlaceholder: string;
+    soldCount: string;
+    addToCart: string;
+    buyNow: string;
+    productDetails: string;
+    description: string;
+    noDescription: string;
+    quantity: string;
+    productNotFound: string;
+    backToHome: string;
+  };
+  nav: {
+    home: string;
+    cart: string;
+    orders: string;
+    profile: string;
+    categories: string;
+  };
+  payment: {
+    title: string;
+    orderNumber: string;
+    selectPayment: string;
+    confirmPayment: string;
+    processing: string;
+    methods: {
+      promptpay: {
+        name: string;
+        description: string;
+      };
+      creditCard: {
+        name: string;
+        description: string;
+      };
+      bankTransfer: {
+        name: string;
+        description: string;
+      };
+    };
+    messages: {
+      success: string;
+      error: string;
+      loadError: string;
+    };
+    success: {
+      title: string;
+      message: string;
+      viewOrder: string;
+      continueShopping: string;
+    };
+  };
+  home: {
+    popularCategories: string;
+    popularProducts: string;
+    newProducts: string;
+    specialOffers: string;
+  };
+  categories: {
+    [key: string]: string;
+  };
+  banners: {
+    [key: string]: string;
+  };
+  tags: {
+    [key: string]: string;
+  };
+  footer: {
+    customerService: string;
+    helpCenter: string;
+    contactUs: string;
+    complaints: string;
+    aboutUs: string;
+    aboutGogo: string;
+    privacyPolicy: string;
+    terms: string;
+    business: string;
+    sellerCenter: string;
+    affiliate: string;
+    advertise: string;
+    contact: string;
+    allRightsReserved: string;
+  };
+}
 
 interface LanguageContextType {
   language: Language;
@@ -14,7 +104,7 @@ interface LanguageContextType {
   t: Translations;
 }
 
-const translations = {
+const translations: Record<Language, Translations> = {
   zh,
   en,
   th
