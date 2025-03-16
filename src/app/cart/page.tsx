@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 export default function Cart() {
   const router = useRouter();
   const { items, updateQuantity, removeFromCart } = useCart();
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
 
   // 确保在客户端渲染后再显示内容
@@ -24,7 +24,7 @@ export default function Cart() {
   }
 
   // 切换商品选中状态
-  const toggleSelect = (productId: number) => {
+  const toggleSelect = (productId: string) => {
     setSelectedItems(current =>
       current.includes(productId)
         ? current.filter(id => id !== productId)
@@ -45,7 +45,7 @@ export default function Cart() {
     .reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   // 调整商品数量
-  const handleQuantityChange = (productId: number, newQuantity: number) => {
+  const handleQuantityChange = (productId: string, newQuantity: number) => {
     if (newQuantity >= 1) {
       updateQuantity(productId, newQuantity);
     }
