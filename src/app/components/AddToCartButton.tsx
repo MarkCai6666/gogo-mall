@@ -5,13 +5,15 @@ import { useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import { CartItem } from '@/types/cart';
 
+type ProductBase = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+};
+
 interface AddToCartButtonProps {
-  product: {
-    id: string;
-    name: string;
-    price: number;
-    image: string;
-  };
+  product: ProductBase;
 }
 
 export default function AddToCartButton({ product }: AddToCartButtonProps) {

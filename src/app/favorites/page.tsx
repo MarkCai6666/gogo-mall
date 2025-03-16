@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'react-hot-toast';
+import { CartItem } from '@/types/cart';
 
 interface Product {
   id: string;
@@ -53,13 +54,14 @@ export default function Favorites() {
 
   // 添加到购物车
   const handleAddToCart = (product: Product) => {
-    addToCart({
+    const cartItem: CartItem = {
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
       quantity: 1
-    });
+    };
+    addToCart(cartItem);
     toast.success('已添加到购物车');
   };
 
