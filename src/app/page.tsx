@@ -103,8 +103,8 @@ export default function Home() {
       {/* 顶部导航栏 */}
       <nav className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            {/* Logo 和搜索框 */}
+          {/* 第一行：Logo和语言切换 */}
+          <div className="flex justify-between h-14 items-center border-b">
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0 flex items-center">
                 <Image
@@ -112,37 +112,25 @@ export default function Home() {
                   alt="GOGO商城"
                   width={40}
                   height={40}
-                  className="w-10 h-10"
+                  className="w-8 h-8 sm:w-10 sm:h-10"
                 />
-                <span className="text-2xl font-bold text-blue-600 ml-2">GOGO</span>
-                <span className="text-xl font-medium text-gray-700 hidden sm:inline">{t.common.mall}</span>
+                <span className="text-xl sm:text-2xl font-bold text-blue-600 ml-2">GOGO</span>
+                <span className="text-lg sm:text-xl font-medium text-gray-700 hidden sm:inline">{t.common.mall}</span>
               </Link>
             </div>
+            <LanguageSwitch />
+          </div>
 
-            {/* 搜索框 - 在移动端隐藏 */}
-            <div className="hidden md:block flex-1 max-w-lg mx-8">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder={t.common.searchPlaceholder}
-                  className="w-full h-10 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-blue-500"
-                />
-                <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
+          {/* 第二行：导航链接和搜索框 */}
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2">
             {/* 导航链接 */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6 mb-2 sm:mb-0">
               <Link href="/" className="text-gray-600 hover:text-blue-500 transition-colors text-sm">{t.nav.home}</Link>
               <div className="relative group">
                 <button className="text-gray-600 hover:text-blue-500 transition-colors text-sm">
                   {t.nav.categories}
                 </button>
-                <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="bg-white rounded-lg shadow-lg py-2 w-32">
                     {categories.map((category) => (
                       <button
@@ -173,17 +161,14 @@ export default function Home() {
               >
                 {t.nav.profile}
               </Link>
-              <LanguageSwitch />
             </div>
-          </div>
 
-          {/* 移动端搜索框 */}
-          <div className="md:hidden pb-4">
-            <div className="relative">
+            {/* 搜索框 */}
+            <div className="relative w-full sm:w-64 md:w-80">
               <input
                 type="text"
                 placeholder={t.common.searchPlaceholder}
-                className="w-full h-10 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-blue-500"
+                className="w-full h-9 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-blue-500 text-sm"
               />
               <div className="absolute left-3 top-1/2 -translate-y-1/2">
                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
