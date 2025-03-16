@@ -9,7 +9,7 @@ export const en = {
     soldCount: 'Sold {count}',
     addToCart: 'Add to Cart',
     buyNow: 'Buy Now',
-    productNotFound: 'Product Not Found',
+    productNotFound: 'Product not found',
     backToHome: 'Back to Home',
     productDetails: 'Product Details',
     description: 'Description',

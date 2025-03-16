@@ -1,6 +1,6 @@
 export const th = {
   common: {
-    back: 'ย้อนกลับ',
+    back: 'กลับ',
     loading: 'กำลังโหลด...',
     confirm: 'ยืนยัน',
     cancel: 'ยกเลิก',
@@ -9,12 +9,12 @@ export const th = {
     soldCount: 'ขายแล้ว {count}',
     addToCart: 'เพิ่มลงตะกร้า',
     buyNow: 'ซื้อเลย',
-    productNotFound: 'ไม่พบสินค้า',
-    backToHome: 'กลับสู่หน้าแรก',
     productDetails: 'รายละเอียดสินค้า',
-    description: 'รายละเอียด',
+    description: 'คำอธิบาย',
     noDescription: 'ไม่มีคำอธิบาย',
-    quantity: 'จำนวน'
+    quantity: 'จำนวน',
+    productNotFound: 'ไม่พบสินค้า',
+    backToHome: 'กลับสู่หน้าแรก'
   },
   nav: {
     home: 'หน้าแรก',

@@ -7,7 +7,14 @@ export const zh = {
     mall: '商城',
     searchPlaceholder: '搜索商品',
     soldCount: '已售 {count}',
-    addToCart: '加入购物车'
+    addToCart: '加入购物车',
+    buyNow: '立即购买',
+    productDetails: '商品详情',
+    description: '商品描述',
+    noDescription: '暂无描述',
+    quantity: '数量',
+    productNotFound: '商品不存在',
+    backToHome: '返回首页'
   },
   nav: {
     home: '首页',
