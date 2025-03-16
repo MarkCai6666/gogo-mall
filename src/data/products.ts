@@ -25,7 +25,7 @@ export const products: Product[] = [
       en: 'iPhone 15 Pro'
     },
     price: 7999,
-    image: '/images/products/iphone15pro.png',
+    image: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch_GEO_TH?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1693009283815',
     category: '手机数码',
     description: {
       th: 'ดีไซน์ไทเทเนียม, ชิป A17 Pro, กล้องหลัก 48MP, พอร์ต USB-C',
@@ -42,7 +42,7 @@ export const products: Product[] = [
       en: 'Light Down Jacket'
     },
     price: 599,
-    image: '/images/products/downjacket.png',
+    image: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/439702/item/goods_09_439702.jpg',
     category: '服装配饰',
     description: {
       th: 'เสื้อกันหนาวน้ำหนักเบา อุ่น สวมใส่สบาย',
