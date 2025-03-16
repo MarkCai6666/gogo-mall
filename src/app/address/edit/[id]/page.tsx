@@ -1,9 +1,12 @@
 import EditAddressClient from './EditAddressClient';
 
-export default function EditAddressPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  return <EditAddressClient id={params.id} />;
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default async function EditAddressPage(props: PageProps) {
+  return <EditAddressClient id={props.params.id} />;
 } 
