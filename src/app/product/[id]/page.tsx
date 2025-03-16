@@ -19,8 +19,8 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
     if (!product) return;
     
     addToCart({
-      id: product.id.toString(), // 转换为字符串
-      name: product.name[language], // 使用当前语言的名称
+      id: product.id,
+      name: product.name[language],
       price: product.price,
       image: product.image,
       quantity: quantity
