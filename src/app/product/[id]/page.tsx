@@ -1,45 +1,31 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { products, type Product } from '@/data/products';
-import { CartItem } from '@/types/cart';
+import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 export default function ProductDetail({ params }: { params: { id: string } }) {
   const { t } = useLanguage();
   const [quantity, setQuantity] = useState(1);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { addToCart } = useCart();
   
   const product = products.find((p: Product) => p.id === parseInt(params.id));
 
   // 添加到购物车
-  const addToCart = () => {
+  const handleAddToCart = () => {
     if (!product) return;
     
-    const existingItem = cartItems.find(item => item.id === product.id);
-    if (existingItem) {
-      setCartItems(cartItems.map(item =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-
-    // 保存到 localStorage
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+    addToCart({
+      id: product.id.toString(), // 转换为字符串
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: quantity
+    });
   };
-
-  // 从 localStorage 加载购物车数据
-  useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
-    }
-  }, []);
 
   if (!product) {
     return (
@@ -140,7 +126,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               {/* 操作按钮 */}
               <div className="flex space-x-4">
                 <button
-                  onClick={addToCart}
+                  onClick={handleAddToCart}
                   className="flex-1 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
