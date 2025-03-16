@@ -25,7 +25,7 @@ export const products: Product[] = [
       en: 'iPhone 15 Pro'
     },
     price: 7999,
-    image: '/images/products/phone.png',
+    image: 'https://img.freepik.com/free-vector/realistic-smartphone-device_52683-29765.jpg',
     category: '手机数码',
     description: {
       th: 'ดีไซน์ไทเทเนียม, ชิป A17 Pro, กล้องหลัก 48MP, พอร์ต USB-C',
