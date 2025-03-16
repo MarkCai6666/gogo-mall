@@ -12,8 +12,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
   
-  const productId = parseInt(params.id, 10);
-  const product = products.find((p: Product) => p.id === productId);
+  const product = products.find((p: Product) => p.id === params.id);
 
   // 添加到购物车
   const handleAddToCart = () => {

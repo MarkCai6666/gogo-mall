@@ -1,5 +1,5 @@
 export interface Product {
-  id: number;
+  id: string;
   name: {
     th: string;
     zh: string;
@@ -18,7 +18,7 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: 1,
+    id: '1',
     name: {
       th: 'ไอโฟน 15 โปร',
       zh: 'iPhone 15 Pro',
@@ -35,7 +35,7 @@ export const products: Product[] = [
     tags: ['新品', '热销']
   },
   {
-    id: 2,
+    id: '2',
     name: {
       th: 'เสื้อกันหนาวบาง',
       zh: '轻薄羽绒服',
@@ -52,7 +52,7 @@ export const products: Product[] = [
     tags: ['热销', '特惠']
   },
   {
-    id: 3,
+    id: '3',
     name: {
       th: 'สตรอว์เบอร์รีออร์แกนิค',
       zh: '有机草莓',
@@ -69,7 +69,7 @@ export const products: Product[] = [
     tags: ['特惠']
   },
   {
-    id: 4,
+    id: '4',
     name: {
       th: 'โซฟาสไตล์นอร์ดิก',
       zh: '北欧简约沙发',
@@ -86,7 +86,7 @@ export const products: Product[] = [
     tags: ['新品']
   },
   {
-    id: 5,
+    id: '5',
     name: {
       th: 'คีย์บอร์ดเกมมิ่ง',
       zh: '机械键盘',
@@ -103,7 +103,7 @@ export const products: Product[] = [
     tags: ['热销']
   },
   {
-    id: 6,
+    id: '6',
     name: {
       th: 'รองเท้ากีฬา',
       zh: '运动跑鞋',
@@ -120,7 +120,7 @@ export const products: Product[] = [
     tags: ['特惠']
   },
   {
-    id: 7,
+    id: '7',
     name: {
       th: 'เนื้อวากิวนำเข้า',
       zh: '进口牛排',
@@ -137,7 +137,7 @@ export const products: Product[] = [
     tags: ['新品']
   },
   {
-    id: 8,
+    id: '8',
     name: {
       th: 'โคมไฟอัจฉริยะ',
       zh: '智能台灯',
