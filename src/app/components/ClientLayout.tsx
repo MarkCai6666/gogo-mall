@@ -1,6 +1,6 @@
 'use client';
 
-import { CartProvider } from '../contexts/CartContext';
+import { CartProvider } from '@/contexts/CartContext';
 import { Toaster } from 'react-hot-toast';
 import { LanguageProvider } from '../../i18n/LanguageContext';
 
