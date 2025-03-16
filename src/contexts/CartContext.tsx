@@ -14,7 +14,7 @@ interface CartContextType {
 }
 
 // 创建购物车上下文
-const CartContext = createContext<CartContextType | null>(null);
+export const CartContext = createContext<CartContextType | null>(null);
 
 // 购物车提供者组件
 export function CartProvider({ children }: { children: React.ReactNode }) {
@@ -99,6 +99,4 @@ export function useCart() {
     throw new Error('useCart must be used within a CartProvider');
   }
   return context;
-}
-
-export default CartContext; 
+} 
